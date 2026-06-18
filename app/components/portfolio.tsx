@@ -1,90 +1,135 @@
 import Image from "next/image";
 
-// To replace the hero image, put a new image in /public and update this path.
-const heroImage = {
-  src: "/portfolio-workspace.png",
-  alt: "Modern workspace with laptop, notebook, and design materials",
+const content = {
+  brand: "Blue",
+  hero: {
+    badge: "Roblox Developer with 5+ years of experience",
+    intro: "Hi, I'm",
+    name: "Blue.",
+    description:
+      "I'm a roblox developer with over 5 years of scripting experience. I can write any system that will bring your idea to life.",
+    button: "View Projects",
+    image: {
+      src: "/Launchpage.gif",
+      alt: "Blue portfolio launch page preview",
+    },
+    calloutTitle: "Current focus",
+    calloutText:
+      "Clean systems, readable UI, and fast interactions that feel good across every screen.",
+  },
+  sections: {
+    skills: {
+      eyebrow: "Skills",
+      title: "Design, Production, Management",
+      description:
+        "Tools and skills I use to produce high quality projects.",
+    },
+    projects: {
+      eyebrow: "Projects",
+      title: "Games, Positions, Portfolios",
+      description:
+        "List of projects I am currently working on or have worked on in the past. Game titles can be looked up online for video footage like sneaks.",
+    },
+    experience: {
+      eyebrow: "Experience",
+      title: "",
+      description: "A full overview of my work experience, and a list of smaller projects.",
+    },
+  },
+  navItems: [
+    { label: "Home", href: "#home" },
+    { label: "Skills", href: "#skills" },
+    { label: "Projects", href: "#projects" },
+    { label: "Experience", href: "#experience" },
+  ],
+  skills: [
+    "Python",
+    "Luau",
+    "Game Design",
+    "Management",
+    "Optimization",
+    "Tooling",
+    "Github",
+    "VS Code"
+  ],
+  // To replace project images, put image files in /public and update each image src.
+  projects: [
+    {
+      name: "AniForce",
+      type: "Roblox Game",
+      status: "Current Project | Programmer",
+      image: {
+        src: "/ANIFORCE.jpg",
+        alt: "AniForce project preview",
+      }
+    },
+    {
+      name: "Grand Alfheim",
+      type: "Roblox Game",
+      status: "Old Project | Programmer",
+      image: {
+        src: "/grandalfheim.png",
+        alt: "Grand Alfheim project preview",
+      }
+    },
+    {
+      name: "Blue Portfolio",
+      type: "Web Portfolio",
+      status: "Portfolio Project",
+      image: {
+        src: "/portfolio-screenshot.png",
+        alt: "Blue portfolio website preview",
+      }
+    },
+    {
+      name: "Hidden Devs",
+      type: "Developer Community",
+      status: "Scripter Application Reviewer",
+      image: {
+        src: "/hd.jpg",
+        alt: "HD",
+      }
+    },
+    {
+      name: "Octavium",
+      type: "MilSim RP Community",
+      status: "Old Project | Programmer",
+      image: {
+        src: "/octavium.jpg",
+        alt: "Octavium",
+      }
+    },
+    {
+      name: "Armageddon Federation",
+      type: "MilSim RP Community",
+      status: "Old Project | Programmer",
+      image: {
+        src: "/no_img.png",
+        alt: "Artemis",
+      }
+    },
+  ],
+  experience: [
+    {
+      role: "Roblox Developer",
+      period: "5+ Years",
+      detail:
+        "I've shipped over 50 functional systems spanning multiple commissions. I can design and build any system from scratch.",
+    },
+    {
+      role: "Application Reader",
+      period: "HiddenDevs",
+      detail:
+        "I reviewed code submissions and assigned the Lua Programmer role for worthy applicants.",
+    },
+    {
+      role: "Scripting Helper",
+      period: "HiddenDevs",
+      detail:
+        "I helped scripters with their code and provided valuable information to other scripters alike.",
+    },
+  ],
 };
-
-const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-];
-
-const skills = [
-  "Roblox Studio",
-  "Luau",
-  "Game Systems",
-  "UI Engineering",
-  "DataStores",
-  "Monetization",
-  "Performance",
-  "Tooling",
-  "Next.js",
-  "TypeScript",
-  "Tailwind CSS",
-  "Product Polish",
-];
-
-// To replace project images, put image files in /public and update each image src.
-const projects = [
-  {
-    name: "AniForce",
-    type: "Roblox Game",
-    status: "Current Project",
-    image: {
-      src: "/ANIFORCE.jpg",
-      alt: "AniForce project preview",
-    },
-    description:
-      "A Roblox anime-inspired experience built with polished systems, responsive UI, and gameplay loops designed to keep players engaged.",
-  },
-  {
-    name: "Grand Alfheim",
-    type: "Roblox Game",
-    status: "Old Project",
-    image: {
-      src: "/grandalfheim.png",
-      alt: "Grand Alfheim project preview",
-    },
-    description:
-      "A fantasy Roblox experience with immersive systems, interface polish, and gameplay features built to support a larger world.",
-  },
-  {
-    name: "Blue Portfolio",
-    type: "Web Portfolio",
-    status: "Portfolio Project",
-    image: {
-      src: "/portfolio-screenshot.png",
-      alt: "Blue portfolio website preview",
-    },
-    description:
-      "A fast Next.js portfolio for presenting work and experience with a strong developer identity.",
-  },
-];
-
-const experience = [
-  {
-    role: "Roblox Developer",
-    period: "5+ Years",
-    detail:
-      "Designing and building player-facing systems, interfaces, and gameplay loops with a focus on performance and retention.",
-  },
-  {
-    role: "UI & Systems Builder",
-    period: "Recent Work",
-    detail:
-      "Creating polished game menus, progression flows, monetization surfaces, and reusable modules for live game updates.",
-  },
-  {
-    role: "Frontend Developer",
-    period: "Portfolio Work",
-    detail:
-      "Building responsive web experiences with Next.js, Tailwind CSS, and careful attention to motion, layout, and presentation.",
-  },
-];
 
 function Navbar() {
   return (
@@ -95,11 +140,11 @@ function Navbar() {
           className="group inline-flex items-center gap-3 text-sm font-bold uppercase tracking-[0.24em] text-white"
         >
           <span className="h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_24px_rgba(103,232,249,0.9)] transition group-hover:scale-125" />
-          Blue
+          {content.brand}
         </a>
 
         <div className="flex gap-2 overflow-x-auto rounded-lg border border-white/10 bg-white/[0.04] p-1 text-sm font-medium text-blue-100/80 lg:gap-1 lg:overflow-visible">
-          {navItems.map((item) => (
+          {content.navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
@@ -154,18 +199,18 @@ function Hero() {
         <div className="animate-rise">
           <div className="inline-flex items-center gap-2 rounded-lg border border-cyan-300/25 bg-cyan-300/10 px-3 py-2 text-sm font-semibold text-cyan-100 shadow-[0_0_36px_rgba(34,211,238,0.16)] backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-cyan-300" />
-            Roblox Developer with 5+ years of experience
+            {content.hero.badge}
           </div>
 
           <h1 className="mt-7 max-w-4xl text-5xl font-semibold leading-[0.98] tracking-tight text-white sm:text-7xl lg:text-8xl">
-            Hi, I&apos;m{" "}
+            {content.hero.intro}{" "}
             <span className="bg-gradient-to-r from-cyan-200 via-blue-300 to-violet-300 bg-clip-text text-transparent">
-              Blue.
+              {content.hero.name}
             </span>
           </h1>
 
           <p className="mt-7 max-w-2xl text-lg leading-8 text-blue-100/75 sm:text-xl">
-            I&apos;m a roblox developer with over 5 years of scripting experience. I can write any system that will bring your idea to life.
+            {content.hero.description}
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -173,7 +218,7 @@ function Hero() {
               href="#projects"
               className="inline-flex h-12 items-center justify-center rounded-lg bg-cyan-300 px-6 text-sm font-bold text-[#061525] shadow-[0_18px_60px_rgba(34,211,238,0.25)] transition hover:-translate-y-1 hover:bg-cyan-200"
             >
-              View Projects
+              {content.hero.button}
             </a>
           </div>
         </div>
@@ -182,8 +227,8 @@ function Hero() {
           <div className="group relative overflow-hidden rounded-lg border border-white/15 bg-white/[0.06] p-3 shadow-2xl shadow-black/30 backdrop-blur-xl">
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-300/20 via-transparent to-violet-400/20 opacity-70 transition group-hover:opacity-100" />
             <Image
-              src={heroImage.src}
-              alt={heroImage.alt}
+              src={content.hero.image.src}
+              alt={content.hero.image.alt}
               width={1792}
               height={1024}
               priority
@@ -191,11 +236,10 @@ function Hero() {
             />
             <div className="absolute bottom-6 left-6 right-6 rounded-lg border border-white/15 bg-[#061525]/80 p-4 backdrop-blur-xl">
               <p className="text-sm font-semibold text-cyan-200">
-                Current focus
+                {content.hero.calloutTitle}
               </p>
               <p className="mt-1 text-sm text-blue-100/75">
-                Clean systems, readable UI, and fast interactions that feel good
-                across every screen.
+                {content.hero.calloutText}
               </p>
             </div>
           </div>
@@ -210,12 +254,12 @@ function Skills() {
     <section id="skills" className="px-5 py-20 sm:px-8 md:py-28">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Skills"
-          title="Systems, interfaces, and polish."
-          description="A practical toolkit for building game experiences and presenting them with strong frontend craft."
+          eyebrow={content.sections.skills.eyebrow}
+          title={content.sections.skills.title}
+          description={content.sections.skills.description}
         />
         <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {skills.map((skill, index) => (
+          {content.skills.map((skill, index) => (
             <div
               key={skill}
               className="animate-fade-in rounded-lg border border-white/10 bg-white/[0.05] px-4 py-4 text-sm font-semibold text-blue-50 backdrop-blur transition hover:-translate-y-1 hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
@@ -238,12 +282,12 @@ function Projects() {
     >
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Projects"
-          title="Selected builds with sharp edges."
-          description="A focused sample of systems, interfaces, and web work that shows how I think through polish and usability."
+          eyebrow={content.sections.projects.eyebrow}
+          title={content.sections.projects.title}
+          description={content.sections.projects.description}
         />
         <div className="mt-10 flex flex-wrap justify-center gap-4">
-          {projects.map((project) => (
+          {content.projects.map((project) => (
             <article
               key={project.name}
               className="group relative w-full overflow-hidden rounded-lg border border-white/10 bg-[#081a2f]/80 backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/45 hover:shadow-xl hover:shadow-cyan-950/35 sm:w-[calc(50%-0.5rem)] xl:w-[calc(25%-0.75rem)]"
@@ -285,12 +329,12 @@ function Experience() {
     <section id="experience" className="px-5 py-20 sm:px-8 md:py-28">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Experience"
-          title="Built through iteration."
-          description="A simple timeline of the work patterns behind the portfolio."
+          eyebrow={content.sections.experience.eyebrow}
+          title={content.sections.experience.title}
+          description={content.sections.experience.description}
         />
         <div className="mx-auto mt-12 max-w-3xl space-y-4">
-          {experience.map((item) => (
+          {content.experience.map((item) => (
             <article
               key={`${item.role}-${item.period}`}
               className="relative rounded-lg border border-white/10 bg-white/[0.05] p-6 backdrop-blur transition hover:-translate-y-1 hover:border-cyan-300/40 hover:bg-white/[0.075]"
