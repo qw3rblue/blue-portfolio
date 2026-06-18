@@ -76,16 +76,16 @@ body {
   position: absolute;
   top: var(--meteor-y);
   left: var(--meteor-x);
-  width: 4px;
-  height: 4px;
+  width: 16px;
+  height: 16px;
   border-radius: 999px;
-  background: radial-gradient(circle, #ffffff 0 28%, rgba(255, 255, 255, 0.82) 42%, transparent 72%);
+  background: radial-gradient(circle, #ffffff 0 22%, rgba(255, 255, 255, 0.92) 38%, rgba(199, 241, 255, 0.36) 62%, transparent 76%);
   box-shadow:
-    0 0 12px rgba(255, 255, 255, 0.95),
-    0 0 30px rgba(199, 241, 255, 0.62),
-    0 0 56px rgba(103, 232, 249, 0.24);
+    0 0 14px rgba(255, 255, 255, 0.92),
+    0 0 34px rgba(199, 241, 255, 0.58),
+    0 0 60px rgba(103, 232, 249, 0.22);
   opacity: 0;
-  transform: translate3d(-18vw, -24vh, 0) scale(var(--meteor-scale));
+  transform: translate3d(18vw, -24vh, 0) scale(var(--meteor-scale));
   animation: shooting-meteor-flight var(--meteor-duration) cubic-bezier(0.17, 0.67, 0.33, 1) infinite;
   animation-delay: var(--meteor-delay);
   will-change: transform, opacity;
@@ -95,7 +95,7 @@ body {
   content: "";
   position: absolute;
   top: 50%;
-  right: 50%;
+  left: 8px;
   width: var(--meteor-length);
   height: 16px;
   border-radius: 999px;
@@ -105,13 +105,13 @@ body {
   clip-path: polygon(0 20%, 100% 48%, 100% 52%, 0 80%);
   filter: blur(0.8px);
   transform: translateY(-50%) rotate(var(--meteor-tail-angle));
-  transform-origin: right center;
+  transform-origin: left center;
 }
 
 .shooting-meteor::after {
   content: "";
   position: absolute;
-  inset: -10px;
+  inset: -8px;
   border-radius: 999px;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.38), rgba(103, 232, 249, 0.12) 42%, transparent 70%);
   opacity: 0.9;
@@ -182,7 +182,7 @@ body {
 @keyframes shooting-meteor-flight {
   0% {
     opacity: 0;
-    transform: translate3d(-18vw, -24vh, 0) scale(var(--meteor-scale));
+    transform: translate3d(18vw, -24vh, 0) scale(var(--meteor-scale));
   }
 
   7% {

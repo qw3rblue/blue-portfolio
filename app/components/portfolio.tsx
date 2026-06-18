@@ -10,10 +10,6 @@ const content = {
     description:
       "I'm a roblox developer with over 5 years of scripting experience. I can write any system that will bring your idea to life. As a developer, I've shipped countless systems spanning more than 100 commissions. From simple combat to sophisticated systems, name it and I'll create it.",
     button: "View Projects",
-    image: {
-      src: "/portfolio-workspace.png",
-      alt: "Blue portfolio workspace preview",
-    },
   },
   sections: {
     skills: {
@@ -173,8 +169,8 @@ function Hero() {
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_82%)]" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#061525] to-transparent" />
 
-      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
-        <div className="animate-rise">
+      <div className="mx-auto max-w-7xl">
+        <div className="max-w-4xl animate-rise">
           <div className="inline-flex items-center gap-2 rounded-lg border border-cyan-300/25 bg-cyan-300/10 px-3 py-2 text-sm font-semibold text-cyan-100 shadow-[0_0_36px_rgba(34,211,238,0.16)] backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-cyan-300" />
             {content.hero.badge}
@@ -198,20 +194,6 @@ function Hero() {
             >
               {content.hero.button}
             </a>
-          </div>
-        </div>
-
-        <div className="animate-float-slow">
-          <div className="group relative overflow-hidden rounded-lg border border-white/15 bg-white/[0.06] p-3 shadow-2xl shadow-black/30 backdrop-blur-xl">
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-300/20 via-transparent to-violet-400/20 opacity-70 transition group-hover:opacity-100" />
-            <Image
-              src={content.hero.image.src}
-              alt={content.hero.image.alt}
-              width={1792}
-              height={1024}
-              priority
-              className="relative aspect-[4/3] w-full rounded-md object-cover opacity-90 grayscale-[10%] transition duration-500 group-hover:scale-[1.025] group-hover:opacity-100 md:aspect-[5/4]"
-            />
           </div>
         </div>
       </div>
