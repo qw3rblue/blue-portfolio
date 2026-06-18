@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Blue | Portfolio",
   description:
-    "Roblox Developer with 4+ Years of Experience",
+    "Roblox Developer with 5+ Years of Experience",
 };
 
 export default function RootLayout({
