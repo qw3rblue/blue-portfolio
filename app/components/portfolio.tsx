@@ -13,9 +13,6 @@ const content = {
       src: "/Launchpage.gif",
       alt: "Blue portfolio launch page preview",
     },
-    calloutTitle: "Current focus",
-    calloutText:
-      "Clean systems, readable UI, and fast interactions that feel good across every screen.",
   },
   sections: {
     skills: {
@@ -214,14 +211,6 @@ function Hero() {
               priority
               className="relative aspect-[4/3] w-full rounded-md object-cover opacity-90 grayscale-[10%] transition duration-500 group-hover:scale-[1.025] group-hover:opacity-100 md:aspect-[5/4]"
             />
-            <div className="absolute bottom-6 left-6 right-6 rounded-lg border border-white/15 bg-[#061525]/80 p-4 backdrop-blur-xl">
-              <p className="text-sm font-semibold text-cyan-200">
-                {content.hero.calloutTitle}
-              </p>
-              <p className="mt-1 text-sm text-blue-100/75">
-                {content.hero.calloutText}
-              </p>
-            </div>
           </div>
         </div>
       </div>
