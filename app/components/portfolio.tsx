@@ -7,7 +7,7 @@ const content = {
     intro: "Hi, I'm",
     name: "Blue.",
     description:
-      "I'm a roblox developer with over 5 years of scripting experience. I can write any system that will bring your idea to life. As a developer, I've shipped countless systems spanning more than 100 commissions.",
+      "I'm a roblox developer with over 5 years of scripting experience. I can write any system that will bring your idea to life. As a developer, I've shipped countless systems spanning more than 100 commissions. From simple combat to sophisticated systems, name it and I'll create it.",
     button: "View Projects",
     image: {
       src: "/Launchpage.gif",
