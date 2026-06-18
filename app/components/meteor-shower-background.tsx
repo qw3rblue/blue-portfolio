@@ -13,7 +13,25 @@ type MeteorStyle = CSSProperties & {
   "--meteor-tail-angle": string;
 };
 
+type StarLayer = "far" | "mid" | "near";
+
+type StarStyle = CSSProperties & {
+  "--star-x": string;
+  "--star-y": string;
+  "--star-size": string;
+  "--star-glow": string;
+  "--star-opacity": string;
+  "--star-dim-opacity": string;
+  "--star-twinkle-duration": string;
+  "--star-twinkle-delay": string;
+};
+
 const meteorCount = 15;
+const starLayers: Array<{ layer: StarLayer; count: number; seedOffset: number }> = [
+  { layer: "far", count: 110, seedOffset: 100 },
+  { layer: "mid", count: 70, seedOffset: 400 },
+  { layer: "near", count: 36, seedOffset: 800 },
+];
 
 function seededRandom(seed: number) {
   const x = Math.sin(seed * 127.1) * 43758.5453123;
@@ -41,10 +59,44 @@ const meteors: MeteorStyle[] = Array.from({ length: meteorCount }, (_, index) =>
   };
 });
 
+const stars: Array<{ layer: StarLayer; stars: StarStyle[] }> = starLayers.map(({ layer, count, seedOffset }) => ({
+  layer,
+  stars: Array.from({ length: count }, (_, index) => {
+    const seed = seedOffset + index + 1;
+    const isNear = layer === "near";
+    const isMid = layer === "mid";
+    const starSize = range(seed + 26, isNear ? 1.2 : 0.6, isNear ? 2.8 : isMid ? 2 : 1.35);
+    const starOpacity = range(seed + 39, isNear ? 0.48 : 0.28, isNear ? 0.95 : 0.76);
+
+    return {
+      "--star-x": `${range(seed, -4, 104).toFixed(2)}%`,
+      "--star-y": `${range(seed + 13, -4, 104).toFixed(2)}%`,
+      "--star-size": `${starSize.toFixed(2)}px`,
+      "--star-glow": `${(starSize * 5.5).toFixed(2)}px`,
+      "--star-opacity": starOpacity.toFixed(2),
+      "--star-dim-opacity": (starOpacity * 0.58).toFixed(2),
+      "--star-twinkle-duration": `${range(seed + 52, 4.8, 10.5).toFixed(2)}s`,
+      "--star-twinkle-delay": `-${range(seed + 65, 0.2, 10).toFixed(2)}s`,
+    } satisfies StarStyle;
+  }),
+}));
+
 export function MeteorShowerBackground() {
   return (
     <div aria-hidden="true" className="meteor-shower-background">
-      <div className="meteor-starfield" />
+      <div className="meteor-starfield">
+        {stars.map(({ layer, stars }) => (
+          <div key={layer} className={`meteor-stars meteor-stars--${layer}`}>
+            {stars.map((star, index) => (
+              <span
+                key={`${layer}-star-${index}`}
+                className="meteor-star"
+                style={star}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
       <div className="meteor-vignette" />
       <div className="meteor-layer">
         {meteors.map((meteor, index) => (

@@ -44,21 +44,55 @@ body {
 }
 
 .meteor-starfield {
+  overflow: hidden;
   opacity: 0.88;
-  background-image:
-    radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 1px, transparent 1.4px),
-    radial-gradient(circle, rgba(255, 255, 255, 0.55) 0 1px, transparent 1.3px),
-    radial-gradient(circle, rgba(103, 232, 249, 0.42) 0 1px, transparent 1.4px);
-  background-position:
-    14px 20px,
-    86px 132px,
-    162px 58px;
-  background-size:
-    220px 220px,
-    320px 320px,
-    460px 460px;
   mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.86) 74%, rgba(0, 0, 0, 0.42));
   animation: starfield-breathe 9s ease-in-out infinite alternate;
+}
+
+.meteor-stars {
+  position: absolute;
+  inset: -8%;
+  will-change: transform;
+}
+
+.meteor-stars--far {
+  opacity: 0.68;
+  animation: starfield-drift-far 80s linear infinite alternate;
+}
+
+.meteor-stars--mid {
+  opacity: 0.8;
+  animation: starfield-drift-mid 58s linear infinite alternate;
+}
+
+.meteor-stars--near {
+  opacity: 0.9;
+  animation: starfield-drift-near 42s linear infinite alternate;
+}
+
+.meteor-star {
+  position: absolute;
+  top: var(--star-y);
+  left: var(--star-x);
+  width: var(--star-size);
+  height: var(--star-size);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 0 var(--star-glow) rgba(255, 255, 255, 0.5),
+    0 0 18px rgba(103, 232, 249, 0.14);
+  opacity: var(--star-opacity);
+  animation: star-twinkle var(--star-twinkle-duration) ease-in-out infinite;
+  animation-delay: var(--star-twinkle-delay);
+}
+
+.meteor-stars--far .meteor-star {
+  background: rgba(220, 240, 255, 0.82);
+}
+
+.meteor-stars--near .meteor-star:nth-child(4n) {
+  background: rgba(185, 246, 255, 0.96);
 }
 
 .meteor-vignette {
@@ -179,6 +213,54 @@ body {
   }
 }
 
+@keyframes starfield-drift-far {
+  from {
+    transform: translate3d(-1.5%, -0.8%, 0);
+  }
+
+  to {
+    transform: translate3d(1.2%, 1%, 0);
+  }
+}
+
+@keyframes starfield-drift-mid {
+  from {
+    transform: translate3d(1.8%, -1.2%, 0);
+  }
+
+  to {
+    transform: translate3d(-2.4%, 1.7%, 0);
+  }
+}
+
+@keyframes starfield-drift-near {
+  from {
+    transform: translate3d(-2.4%, 1.4%, 0);
+  }
+
+  to {
+    transform: translate3d(3.2%, -2%, 0);
+  }
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: var(--star-dim-opacity);
+    transform: scale(0.82);
+  }
+
+  45% {
+    opacity: var(--star-opacity);
+    transform: scale(1);
+  }
+
+  68% {
+    opacity: var(--star-dim-opacity);
+    transform: scale(0.9);
+  }
+}
+
 @keyframes shooting-meteor-flight {
   0% {
     opacity: 0;
@@ -207,10 +289,12 @@ body {
 @media (max-width: 640px) {
   .meteor-starfield {
     opacity: 0.54;
-    background-size:
-      180px 180px,
-      280px 280px,
-      380px 380px;
+  }
+
+  .meteor-stars--far .meteor-star:nth-child(2n),
+  .meteor-stars--mid .meteor-star:nth-child(3n),
+  .meteor-stars--near .meteor-star:nth-child(2n) {
+    display: none;
   }
 
   .shooting-meteor:nth-child(3n) {
@@ -229,6 +313,8 @@ body {
   }
 
   .meteor-starfield,
+  .meteor-stars,
+  .meteor-star,
   .shooting-meteor {
     animation: none !important;
   }
