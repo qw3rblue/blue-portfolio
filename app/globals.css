@@ -37,7 +37,6 @@ body {
 }
 
 .meteor-starfield,
-.meteor-vignette,
 .meteor-layer {
   position: absolute;
   inset: 0;
@@ -46,7 +45,6 @@ body {
 .meteor-starfield {
   overflow: hidden;
   opacity: 0.88;
-  mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.86) 74%, rgba(0, 0, 0, 0.42));
   animation: starfield-breathe 9s ease-in-out infinite alternate;
 }
 
@@ -93,12 +91,6 @@ body {
 
 .meteor-stars--near .meteor-star:nth-child(4n) {
   background: rgba(185, 246, 255, 0.96);
-}
-
-.meteor-vignette {
-  background:
-    radial-gradient(ellipse at center, transparent 18%, rgba(6, 21, 37, 0.18) 64%, rgba(3, 8, 18, 0.58) 100%),
-    linear-gradient(to bottom, rgba(6, 21, 37, 0.08), rgba(6, 21, 37, 0.42));
 }
 
 .meteor-layer {

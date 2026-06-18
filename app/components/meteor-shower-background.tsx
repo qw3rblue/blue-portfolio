@@ -97,7 +97,6 @@ export function MeteorShowerBackground() {
           </div>
         ))}
       </div>
-      <div className="meteor-vignette" />
       <div className="meteor-layer">
         {meteors.map((meteor, index) => (
           <span

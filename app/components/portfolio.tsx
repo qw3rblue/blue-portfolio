@@ -165,10 +165,6 @@ function Hero() {
       id="home"
       className="relative isolate overflow-hidden px-5 pb-20 pt-16 sm:px-8 md:pb-28 md:pt-24"
     >
-      <div className="absolute inset-x-0 top-0 -z-10 h-full bg-[linear-gradient(135deg,rgba(6,21,37,0.8)_0%,rgba(8,41,74,0.64)_42%,rgba(5,9,21,0.84)_100%)]" />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_82%)]" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#061525] to-transparent" />
-
       <div className="mx-auto max-w-7xl">
         <div className="max-w-4xl animate-rise">
           <div className="inline-flex items-center gap-2 rounded-lg border border-cyan-300/25 bg-cyan-300/10 px-3 py-2 text-sm font-semibold text-cyan-100 shadow-[0_0_36px_rgba(34,211,238,0.16)] backdrop-blur">
@@ -203,7 +199,10 @@ function Hero() {
 
 function Skills() {
   return (
-    <section id="skills" className="px-5 py-20 sm:px-8 md:py-28">
+    <section
+      id="skills"
+      className="border-t border-white/10 px-5 py-20 sm:px-8 md:py-28"
+    >
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow={content.sections.skills.eyebrow}
