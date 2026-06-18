@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MeteorShowerBackground } from "./meteor-shower-background";
 
 const content = {
   brand: "Blue",
@@ -10,8 +11,8 @@ const content = {
       "I'm a roblox developer with over 5 years of scripting experience. I can write any system that will bring your idea to life. As a developer, I've shipped countless systems spanning more than 100 commissions. From simple combat to sophisticated systems, name it and I'll create it.",
     button: "View Projects",
     image: {
-      src: "/Launchpage.gif",
-      alt: "Blue portfolio launch page preview",
+      src: "/portfolio-workspace.png",
+      alt: "Blue portfolio workspace preview",
     },
   },
   sections: {
@@ -168,7 +169,7 @@ function Hero() {
       id="home"
       className="relative isolate overflow-hidden px-5 pb-20 pt-16 sm:px-8 md:pb-28 md:pt-24"
     >
-      <div className="absolute inset-x-0 top-0 -z-10 h-full bg-[linear-gradient(135deg,#061525_0%,#08294a_42%,#050915_100%)]" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-full bg-[linear-gradient(135deg,rgba(6,21,37,0.8)_0%,rgba(8,41,74,0.64)_42%,rgba(5,9,21,0.84)_100%)]" />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_82%)]" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#061525] to-transparent" />
 
@@ -297,11 +298,14 @@ function Projects() {
 
 export function Portfolio() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#061525] text-white">
-      <Navbar />
-      <Hero />
-      <Skills />
-      <Projects />
+    <main className="relative isolate min-h-screen overflow-hidden bg-transparent text-white">
+      <MeteorShowerBackground />
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        <Skills />
+        <Projects />
+      </div>
     </main>
   );
 }
