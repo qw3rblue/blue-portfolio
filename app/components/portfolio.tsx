@@ -30,17 +30,11 @@ const content = {
       description:
         "List of projects I am currently working on or have worked on in the past. Game titles can be looked up online for video footage like sneaks.",
     },
-    experience: {
-      eyebrow: "Experience",
-      title: "",
-      description: "A full overview of my work experience, and a list of smaller projects.",
-    },
   },
   navItems: [
     { label: "Home", href: "#home" },
     { label: "Skills", href: "#skills" },
     { label: "Projects", href: "#projects" },
-    { label: "Experience", href: "#experience" },
   ],
   skills: [
     "Python",
@@ -61,7 +55,8 @@ const content = {
       image: {
         src: "/ANIFORCE.jpg",
         alt: "AniForce project preview",
-      }
+      },
+      description: "",
     },
     {
       name: "Grand Alfheim",
@@ -70,7 +65,8 @@ const content = {
       image: {
         src: "/grandalfheim.png",
         alt: "Grand Alfheim project preview",
-      }
+      },
+      description: "",
     },
     {
       name: "Blue Portfolio",
@@ -79,7 +75,8 @@ const content = {
       image: {
         src: "/portfolio-screenshot.png",
         alt: "Blue portfolio website preview",
-      }
+      },
+      description: "",
     },
     {
       name: "Hidden Devs",
@@ -88,7 +85,8 @@ const content = {
       image: {
         src: "/hd.jpg",
         alt: "HD",
-      }
+      },
+      description: "",
     },
     {
       name: "Octavium",
@@ -97,7 +95,8 @@ const content = {
       image: {
         src: "/octavium.jpg",
         alt: "Octavium",
-      }
+      },
+      description: "",
     },
     {
       name: "Armageddon Federation",
@@ -106,27 +105,8 @@ const content = {
       image: {
         src: "/no_img.png",
         alt: "Artemis",
-      }
-    },
-  ],
-  experience: [
-    {
-      role: "Roblox Developer",
-      period: "5+ Years",
-      detail:
-        "I've shipped over 50 functional systems spanning multiple commissions. I can design and build any system from scratch.",
-    },
-    {
-      role: "Application Reader",
-      period: "HiddenDevs",
-      detail:
-        "I reviewed code submissions and assigned the Lua Programmer role for worthy applicants.",
-    },
-    {
-      role: "Scripting Helper",
-      period: "HiddenDevs",
-      detail:
-        "I helped scripters with their code and provided valuable information to other scripters alike.",
+      },
+      description: "",
     },
   ],
 };
@@ -312,42 +292,12 @@ function Projects() {
                 <p className="mt-1 text-xs font-semibold text-blue-100/50">
                   {project.status}
                 </p>
-                <p className="mt-2 text-sm leading-6 text-blue-100/70">
-                  {project.description}
-                </p>
+                {project.description ? (
+                  <p className="mt-2 text-sm leading-6 text-blue-100/70">
+                    {project.description}
+                  </p>
+                ) : null}
               </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Experience() {
-  return (
-    <section id="experience" className="px-5 py-20 sm:px-8 md:py-28">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading
-          eyebrow={content.sections.experience.eyebrow}
-          title={content.sections.experience.title}
-          description={content.sections.experience.description}
-        />
-        <div className="mx-auto mt-12 max-w-3xl space-y-4">
-          {content.experience.map((item) => (
-            <article
-              key={`${item.role}-${item.period}`}
-              className="relative rounded-lg border border-white/10 bg-white/[0.05] p-6 backdrop-blur transition hover:-translate-y-1 hover:border-cyan-300/40 hover:bg-white/[0.075]"
-            >
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                <h3 className="text-xl font-semibold text-white">{item.role}</h3>
-                <p className="text-sm font-bold uppercase tracking-[0.18em] text-cyan-300">
-                  {item.period}
-                </p>
-              </div>
-              <p className="mt-4 text-base leading-7 text-blue-100/70">
-                {item.detail}
-              </p>
             </article>
           ))}
         </div>
@@ -363,7 +313,6 @@ export function Portfolio() {
       <Hero />
       <Skills />
       <Projects />
-      <Experience />
     </main>
   );
 }
