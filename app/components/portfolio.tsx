@@ -38,14 +38,15 @@ const content = {
     "Optimization",
     "Tooling",
     "Github",
-    "VS Code"
+    "VS Code",
   ],
-  // To replace project images, put image files in /public and update each image src.
+  // Put redirect links in the top-level href field. Leave href empty to keep a project unlinked.
   projects: [
     {
       name: "AniForce",
       type: "Roblox Game",
       status: "Current Project | Programmer",
+      href: "https://youtu.be/EOcuQzJScUI?si=VxIeMSBgdk1zMxEr",
       image: {
         src: "/ANIFORCE.jpg",
         alt: "AniForce project preview",
@@ -56,6 +57,7 @@ const content = {
       name: "Grand Alfheim",
       type: "Roblox Game",
       status: "Old Project | Programmer",
+      href: "https://youtu.be/JeW42xwzlpE?si=tBlzXZycPMmUdt59",
       image: {
         src: "/grandalfheim.png",
         alt: "Grand Alfheim project preview",
@@ -63,42 +65,13 @@ const content = {
       description: "",
     },
     {
-      name: "Blue Portfolio",
-      type: "Web Portfolio",
-      status: "Portfolio Project",
-      image: {
-        src: "/portfolio-screenshot.png",
-        alt: "Blue portfolio website preview",
-      },
-      description: "",
-    },
-    {
       name: "Hidden Devs",
       type: "Developer Community",
       status: "Scripter Application Reviewer",
+      href: "https://hiddendevs.com/",
       image: {
         src: "/hd.jpg",
         alt: "HD",
-      },
-      description: "",
-    },
-    {
-      name: "Octavium",
-      type: "MilSim RP Community",
-      status: "Old Project | Programmer",
-      image: {
-        src: "/octavium.jpg",
-        alt: "Octavium",
-      },
-      description: "",
-    },
-    {
-      name: "Armageddon Federation",
-      type: "MilSim RP Community",
-      status: "Old Project | Programmer",
-      image: {
-        src: "/no_img.png",
-        alt: "Artemis",
       },
       description: "",
     },
@@ -226,6 +199,9 @@ function Skills() {
 }
 
 function Projects() {
+  const projectCardClassName =
+    "group relative w-full overflow-hidden rounded-lg border border-white/10 bg-[#081a2f]/80 text-left backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/45 hover:shadow-xl hover:shadow-cyan-950/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 sm:w-[calc(50%-0.5rem)] xl:w-[calc(25%-0.75rem)]";
+
   return (
     <section
       id="projects"
@@ -238,39 +214,54 @@ function Projects() {
           description={content.sections.projects.description}
         />
         <div className="mt-10 flex flex-wrap justify-center gap-4">
-          {content.projects.map((project) => (
-            <article
-              key={project.name}
-              className="group relative w-full overflow-hidden rounded-lg border border-white/10 bg-[#081a2f]/80 backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/45 hover:shadow-xl hover:shadow-cyan-950/35 sm:w-[calc(50%-0.5rem)] xl:w-[calc(25%-0.75rem)]"
-            >
-              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-400 opacity-70 transition group-hover:opacity-100" />
-              <div className="overflow-hidden border-b border-white/10 bg-white/[0.03]">
-                <Image
-                  src={project.image.src}
-                  alt={project.image.alt}
-                  width={900}
-                  height={560}
-                  className="aspect-[16/8] w-full object-cover opacity-85 transition duration-500 group-hover:scale-105 group-hover:opacity-100"
-                />
-              </div>
-              <div className="p-4">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-cyan-300">
-                  {project.type}
-                </p>
-                <h3 className="mt-3 text-lg font-semibold text-white">
-                  {project.name}
-                </h3>
-                <p className="mt-1 text-xs font-semibold text-blue-100/50">
-                  {project.status}
-                </p>
-                {project.description ? (
-                  <p className="mt-2 text-sm leading-6 text-blue-100/70">
-                    {project.description}
+          {content.projects.map((project) => {
+            const cardContent = (
+              <>
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-400 opacity-70 transition group-hover:opacity-100" />
+                <div className="overflow-hidden border-b border-white/10 bg-white/[0.03]">
+                  <Image
+                    src={project.image.src}
+                    alt={project.image.alt}
+                    width={900}
+                    height={560}
+                    className="aspect-[16/8] w-full object-cover opacity-85 transition duration-500 group-hover:scale-105 group-hover:opacity-100"
+                  />
+                </div>
+                <div className="p-4">
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-cyan-300">
+                    {project.type}
                   </p>
-                ) : null}
-              </div>
-            </article>
-          ))}
+                  <h3 className="mt-3 text-lg font-semibold text-white">
+                    {project.name}
+                  </h3>
+                  <p className="mt-1 text-xs font-semibold text-blue-100/50">
+                    {project.status}
+                  </p>
+                  {project.description ? (
+                    <p className="mt-2 text-sm leading-6 text-blue-100/70">
+                      {project.description}
+                    </p>
+                  ) : null}
+                </div>
+              </>
+            );
+
+            return project.href ? (
+              <a
+                key={project.name}
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+                className={projectCardClassName}
+              >
+                {cardContent}
+              </a>
+            ) : (
+              <article key={project.name} className={projectCardClassName}>
+                {cardContent}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
