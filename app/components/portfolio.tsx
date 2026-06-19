@@ -22,7 +22,7 @@ const content = {
       eyebrow: "Projects",
       title: "Games, Positions, Portfolios",
       description:
-        "List of projects I am currently working on or have worked on in the past. Game titles can be looked up online for video footage like sneaks.",
+        "Only contains long-term projects / positions, not including small commissions.",
     },
   },
   navItems: [
