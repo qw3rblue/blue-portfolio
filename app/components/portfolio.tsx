@@ -22,13 +22,20 @@ const content = {
       eyebrow: "Projects",
       title: "Games, Positions, Portfolios",
       description:
-        "Only contains long-term projects / positions, not including small commissions.",
+        "A glimpse of where my passion has taken me.",
+    },
+    works: {
+      eyebrow: "Works",
+      title: "Systems, Commissions, Showcases",
+      description:
+        "A closer look at the original systems and production work I build.",
     },
   },
   navItems: [
     { label: "Home", href: "#home" },
     { label: "Skills", href: "#skills" },
     { label: "Projects", href: "#projects" },
+    { label: "Works", href: "#works" },
   ],
   skills: [
     "Python",
@@ -63,6 +70,20 @@ const content = {
         alt: "Grand Alfheim project preview",
       },
       description: "",
+    }
+  ],
+  works: [
+    {
+      title: "Pending Content",
+      category: "Undefined",
+      duration: "Undefined",
+      href: "",
+      image: {
+        src: "/no_img.png",
+        alt: "",
+      },
+      description:
+        "Content is currently unavailable and will be published soon.",
     }
   ],
 };
@@ -257,6 +278,73 @@ function Projects() {
   );
 }
 
+function Works() {
+  const workItemClassName =
+    "group grid gap-4 rounded-lg border border-white/10 bg-[#07182b]/80 p-3 text-left backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:bg-[#09213b]/85 hover:shadow-xl hover:shadow-cyan-950/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 sm:grid-cols-[minmax(210px,320px)_1fr] sm:gap-5 sm:p-4";
+
+  return (
+    <section
+      id="works"
+      className="border-b border-white/10 px-5 py-20 sm:px-8 md:py-28"
+    >
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          eyebrow={content.sections.works.eyebrow}
+          title={content.sections.works.title}
+          description={content.sections.works.description}
+        />
+        <div className="mt-10 space-y-4">
+          {content.works.map((work) => {
+            const workContent = (
+              <>
+                <div className="relative overflow-hidden rounded-md border border-white/10 bg-white/[0.04]">
+                  <Image
+                    src={work.image.src}
+                    alt={work.image.alt}
+                    width={640}
+                    height={360}
+                    className="aspect-video w-full object-cover opacity-90 transition duration-500 group-hover:scale-105 group-hover:opacity-100"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#061525]/80 to-transparent" />
+                </div>
+                <div className="flex min-w-0 flex-col justify-center py-1">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-bold uppercase tracking-[0.16em]">
+                    <span className="text-cyan-300">{work.category}</span>
+                    <span className="h-1 w-1 rounded-full bg-blue-100/35" />
+                    <span className="text-blue-100/50">{work.duration}</span>
+                  </div>
+                  <h3 className="mt-3 text-xl font-semibold leading-tight text-white sm:text-2xl">
+                    {work.title}
+                  </h3>
+                  <p className="mt-3 max-w-3xl text-sm leading-6 text-blue-100/70 sm:text-base sm:leading-7">
+                    {work.description}
+                  </p>
+                </div>
+              </>
+            );
+
+            return work.href ? (
+              <a
+                key={work.title}
+                href={work.href}
+                target="_blank"
+                rel="noreferrer"
+                className={workItemClassName}
+              >
+                {workContent}
+              </a>
+            ) : (
+              <article key={work.title} className={workItemClassName}>
+                {workContent}
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function Portfolio() {
   return (
     <main className="relative isolate min-h-screen overflow-hidden bg-transparent text-white">
@@ -266,6 +354,7 @@ export function Portfolio() {
         <Hero />
         <Skills />
         <Projects />
+        <Works />
       </div>
     </main>
   );
