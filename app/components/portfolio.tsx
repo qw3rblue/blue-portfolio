@@ -4,11 +4,11 @@ import { MeteorShowerBackground } from "./meteor-shower-background";
 const content = {
   brand: "Blue",
   hero: {
-    badge: "Roblox Developer with 5+ years of experience",
+    badge: "Programmer and Project Manager",
     intro: "Hi, I'm",
     name: "Blue.",
     description:
-      "I'm a roblox developer with over 5 years of scripting experience. I can write any system that will bring your idea to life. As a developer, I've shipped countless systems spanning more than 100 commissions. From simple combat to sophisticated systems, name it and I'll create it.",
+      "Over 5 years of scripting experience. I can write any system that will bring your idea to life. As a developer, I've shipped countless systems spanning more than 100 commissions. From simple combat to sophisticated systems, name it and I'll create it.",
     button: "View Projects",
   },
   sections: {
@@ -63,18 +63,7 @@ const content = {
         alt: "Grand Alfheim project preview",
       },
       description: "",
-    },
-    {
-      name: "Hidden Devs",
-      type: "Developer Community",
-      status: "Scripter Application Reviewer",
-      href: "https://hiddendevs.com/",
-      image: {
-        src: "/hd.jpg",
-        alt: "HD",
-      },
-      description: "",
-    },
+    }
   ],
 };
 
