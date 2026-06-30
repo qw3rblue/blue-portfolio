@@ -77,7 +77,7 @@ const content = {
       title: "Pending Content",
       category: "Undefined",
       duration: "Undefined",
-      href: "",
+      href: "https://youtu.be/EOcuQzJScUI?si=VxIeMSBgdk1zMxEr",
       image: {
         src: "/no_img.png",
         alt: "",
