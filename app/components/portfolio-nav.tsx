@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -22,10 +23,15 @@ const INDICATOR_STORAGE_KEY = "blue-portfolio-nav-indicator";
 export function PortfolioNav({
   activePath,
   brand,
+  brandImage,
   items,
 }: {
   activePath: string;
   brand: string;
+  brandImage: {
+    alt: string;
+    src: string;
+  };
   items: readonly NavItem[];
 }) {
   const navRef = useRef<HTMLDivElement>(null);
@@ -169,8 +175,14 @@ export function PortfolioNav({
           href="/"
           className="group inline-flex items-center gap-3 text-sm font-black uppercase tracking-[0.24em] text-white md:rounded-lg md:px-2 md:py-1"
         >
-          <span className="relative grid h-9 w-9 place-items-center rounded-full border border-[#35d8ff]/35 bg-[#08243f] text-xs text-[#49dcff] shadow-[0_0_24px_rgba(53,216,255,0.36)] transition group-hover:scale-105">
-            B
+          <span className="relative h-9 w-9 overflow-hidden rounded-full border border-[#35d8ff]/35 bg-[#08243f] shadow-[0_0_24px_rgba(53,216,255,0.36)] transition group-hover:scale-105">
+            <Image
+              src={brandImage.src}
+              alt={brandImage.alt}
+              width={72}
+              height={72}
+              className="h-full w-full object-cover opacity-90 saturate-125"
+            />
           </span>
           <span className="flex flex-col">
             <span>{brand}</span>

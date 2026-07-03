@@ -3,6 +3,10 @@ import { PortfolioNav } from "./portfolio-nav";
 
 const content = {
   brand: "Blue",
+  brandImage: {
+    src: "/no_img.png",
+    alt: "Navigation profile image placeholder",
+  },
   hero: {
     intro: "Hi, I'm",
     name: "Blue.",
@@ -152,6 +156,7 @@ function PageShell({
       <PortfolioNav
         activePath={activePath}
         brand={content.brand}
+        brandImage={content.brandImage}
         items={content.navItems}
       />
       <div className="relative min-h-screen md:pl-72">{children}</div>
