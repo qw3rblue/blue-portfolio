@@ -64,7 +64,7 @@ const content = {
         alt: "AniForce project preview",
       },
       description:
-        "Add a short description here for the featured project. This space is set aside for context, your role, or the kind of systems you built.",
+        "An anime team-based hero shooter heavily inspired by Marvel Rivals. This project is set for a 2026 release.\n\nI am on this project as a programmer working on any system assigned. Main responsibilities include new system implementations, existing system refactors, bug fixes, and optimizations.",
     },
     {
       name: "Grand Alfheim",
@@ -73,7 +73,7 @@ const content = {
       href: "https://youtu.be/JeW42xwzlpE?si=tBlzXZycPMmUdt59",
       image: {
         src: "/grandalfheim.png",
-        alt: "Grand Alfheim project preview",
+        alt: "An MMORPG about Sword Art Online. I worked on this project for a few months before I took a development hiatus.",
       },
       description: "",
     },
@@ -269,7 +269,7 @@ function FeaturedProject() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#041526] via-transparent to-[#35d8ff]/10" />
           </div>
-          <div className="flex flex-col justify-center border-t border-sky-200/12 p-4 sm:p-6 lg:border-l lg:border-t-0">
+          <div className="flex flex-col justify-start border-t border-sky-200/12 p-4 sm:p-6 lg:border-l lg:border-t-0">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-[#49dcff]">
               Featured Project
             </p>
@@ -279,7 +279,7 @@ function FeaturedProject() {
             <p className="mt-2 text-sm font-semibold text-sky-100/60">
               {featuredProject.status}
             </p>
-            <p className="mt-4 text-sm leading-6 text-sky-50/72">
+            <p className="mt-4 whitespace-pre-line text-sm leading-6 text-sky-50/72">
               {featuredProject.description}
             </p>
           </div>
@@ -376,7 +376,7 @@ function ProjectCard({
           </p>
         </div>
         {project.description ? (
-          <p className="mt-3 text-sm leading-6 text-sky-50/70">
+          <p className="mt-3 whitespace-pre-line text-sm leading-6 text-sky-50/70">
             {project.description}
           </p>
         ) : null}
@@ -429,7 +429,7 @@ export function PortfolioContact() {
           <SectionHeading
             eyebrow="Contact"
             title="Contact Me"
-            description="Reach me through any of my social links."
+            description="Reach me through any of my social links. When reaching out, please be straight to the point instead of starting the exchange with a single 'Hello' or 'Hi'."
           />
           <div className="mt-9 grid gap-4 sm:grid-cols-2">
             {content.contact.map((item, index) => (
