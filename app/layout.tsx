@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { SiteAudio } from "./components/site-audio";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,7 +16,6 @@ export default function RootLayout({
     <html lang="en" className="dark h-full antialiased">
       <body className="min-h-full flex flex-col">
         {children}
-        <SiteAudio />
       </body>
     </html>
   );
