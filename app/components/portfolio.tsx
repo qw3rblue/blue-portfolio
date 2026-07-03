@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PortfolioNav } from "./portfolio-nav";
+import { WorksList } from "./works-list";
 
 const content = {
   brand: "Blue",
@@ -18,9 +19,8 @@ const content = {
     },
   },
   stats: [
-    { value: "5+", label: "Years scripting" },
-    { value: "100+", label: "Commissions shipped" },
-    { value: "Roblox", label: "Primary platform" },
+    { value: "5 +", label: "Years scripting" },
+    { value: "50 +", label: "Commissions shipped" },
   ],
   sections: {
     projects: {
@@ -82,7 +82,7 @@ const content = {
     {
       title: "Kaiju Cutscene",
       category: "AniForce",
-      duration: "Frontend, Outdated",
+      tags: "Frontend, Outdated",
       href: "https://youtu.be/VP21uyGyFvU",
       image: {
         src: "/Thumbnails/KaijuCutscene.png",
@@ -94,7 +94,7 @@ const content = {
     {
       title: "Character Moveset #1",
       category: "AniForce",
-      duration: "Combat",
+      tags: "Combat",
       href: "https://www.youtube.com/watch?v=1SLr62VBBjw",
       image: {
         src: "/no_img.png",
@@ -106,7 +106,7 @@ const content = {
     {
       title: "Character Moveset #2",
       category: "AniForce",
-      duration: "Combat",
+      tags: "Combat",
       href: "https://www.youtube.com/watch?v=1SLr62VBBjw",
       image: {
         src: "/no_img.png",
@@ -201,7 +201,7 @@ function Hero() {
 
   return (
     <section className="relative isolate overflow-hidden px-5 pb-10 pt-12 sm:px-8 md:pb-12 md:pt-16">
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-center">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,32%)] lg:items-stretch">
         <div className="animate-rise">
           <h1 className="max-w-4xl text-4xl font-black leading-[0.98] tracking-tight text-white sm:text-5xl lg:text-6xl">
             {content.hero.intro}{" "}
@@ -228,7 +228,7 @@ function Hero() {
         </div>
 
         <div
-          className="animate-panel-in mx-auto w-full max-w-[220px] overflow-hidden rounded-lg border border-[#35d8ff]/28 bg-[#061c33]/86 shadow-[0_18px_54px_rgba(0,153,255,0.16)]"
+          className="animate-panel-in w-full overflow-hidden rounded-lg border border-[#35d8ff]/28 bg-[#061c33]/86 shadow-[0_18px_54px_rgba(0,153,255,0.16)]"
           style={{ animationDelay: "120ms" }}
         >
           <Image
@@ -237,7 +237,7 @@ function Hero() {
             width={440}
             height={440}
             priority
-            className="aspect-square w-full object-cover opacity-90 saturate-125"
+            className="aspect-[4/3] h-full min-h-[240px] w-full object-cover opacity-90 saturate-125 lg:aspect-auto"
           />
         </div>
       </div>
@@ -367,7 +367,7 @@ function ProjectCard({
         <p className="text-xs font-black uppercase tracking-[0.18em] text-[#49dcff]">
           {project.type}
         </p>
-        <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="text-xl font-black text-white sm:text-2xl">
             {project.name}
           </h2>
@@ -409,80 +409,15 @@ export function PortfolioWorks() {
     <PageShell activePath="/works">
       <section className="px-5 py-14 sm:px-8 md:py-20">
         <div className="mx-auto max-w-6xl">
-          <div className="grid gap-8 lg:grid-cols-[300px_1fr]">
-            <SectionHeading
-              eyebrow={content.sections.works.eyebrow}
-              title={content.sections.works.title}
-              description={content.sections.works.description}
-              align="left"
-            />
-            <div className="space-y-4">
-              {content.works.map((work, index) => (
-                <WorkCard key={work.title} work={work} index={index} />
-              ))}
-            </div>
-          </div>
+          <SectionHeading
+            eyebrow={content.sections.works.eyebrow}
+            title={content.sections.works.title}
+            description={content.sections.works.description}
+          />
+          <WorksList works={content.works} />
         </div>
       </section>
     </PageShell>
-  );
-}
-
-function WorkCard({
-  work,
-  index,
-}: {
-  work: (typeof content.works)[number];
-  index: number;
-}) {
-  const workContent = (
-    <>
-      <div className="relative overflow-hidden rounded-md border border-sky-200/14 bg-[#061c33] sm:w-[240px]">
-        <Image
-          src={work.image.src}
-          alt={work.image.alt}
-          width={640}
-          height={360}
-          className="aspect-video w-full object-cover opacity-[0.92] saturate-125 transition duration-500 group-hover:scale-105 group-hover:opacity-100"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#03111f]/72 to-transparent" />
-      </div>
-      <div className="flex min-w-0 flex-1 flex-col justify-center py-1">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-black uppercase tracking-[0.16em]">
-          <span className="text-[#49dcff]">{work.category}</span>
-          <span className="h-1 w-1 rounded-full bg-sky-100/40" />
-          <span className="text-sky-100/55">{work.duration}</span>
-        </div>
-        <h2 className="mt-2 text-xl font-black leading-tight text-white">
-          <span className="mr-3 text-[#35d8ff]/70">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          {work.title}
-        </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-sky-50/70">
-          {work.description}
-        </p>
-      </div>
-    </>
-  );
-  const className =
-    "animate-panel-in group flex flex-col gap-4 rounded-lg border border-sky-200/14 bg-[#061c33]/82 p-3 text-left shadow-[0_12px_48px_rgba(0,87,156,0.15)] transition duration-300 hover:-translate-y-1 hover:border-[#35d8ff]/70 hover:bg-[#0a3155] hover:shadow-[0_12px_48px_rgba(53,216,255,0.16)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#35d8ff] sm:flex-row sm:gap-4";
-  const style = { animationDelay: `${120 + index * 80}ms` };
-
-  return work.href ? (
-    <a
-      href={work.href}
-      target="_blank"
-      rel="noreferrer"
-      className={className}
-      style={style}
-    >
-      {workContent}
-    </a>
-  ) : (
-    <article className={className} style={style}>
-      {workContent}
-    </article>
   );
 }
 
