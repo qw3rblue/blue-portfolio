@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { PortfolioNav } from "./portfolio-nav";
+import { SkillsDropdown } from "./skills-dropdown";
 
 const content = {
   brand: "Blue",
   hero: {
-    badge: "Programmer and Project Manager",
+    badge: "Commissions Open",
     intro: "Hi, I'm",
     name: "Blue.",
     description:
@@ -19,8 +21,7 @@ const content = {
   ],
   sections: {
     skills: {
-      eyebrow: "Skills",
-      title: "Design, Production, Management",
+      title: "My Skills",
       description:
         "Tools and skills I use to produce high quality projects.",
     },
@@ -39,7 +40,6 @@ const content = {
   },
   navItems: [
     { label: "Home", href: "/" },
-    { label: "Skills", href: "/skills" },
     { label: "Projects", href: "/projects" },
     { label: "Works", href: "/works" },
   ],
@@ -118,38 +118,20 @@ const content = {
   ],
 };
 
-function Navbar() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-sky-300/20 bg-[#06162a]/80 shadow-[0_12px_42px_rgba(0,153,255,0.14)] backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-3 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
-        <Link
-          href="/"
-          className="group inline-flex items-center gap-3 text-sm font-black uppercase tracking-[0.24em] text-white"
-        >
-          <span className="relative h-3 w-3 rounded-full bg-[#35d8ff] shadow-[0_0_24px_rgba(53,216,255,0.95)] transition group-hover:scale-125" />
-          {content.brand}
-        </Link>
-
-        <div className="flex gap-1 overflow-x-auto rounded-lg border border-sky-300/20 bg-sky-300/[0.08] p-1 text-sm font-semibold text-sky-100 lg:overflow-visible">
-          {content.navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="whitespace-nowrap rounded-md px-3 py-1.5 transition hover:bg-[#28d7ff]/20 hover:text-white"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-      </nav>
-    </header>
-  );
-}
-
-function PageShell({ children }: { children: React.ReactNode }) {
+function PageShell({
+  activePath,
+  children,
+}: {
+  activePath: string;
+  children: React.ReactNode;
+}) {
   return (
     <main className="neon-page relative isolate min-h-screen overflow-hidden text-white">
-      <Navbar />
+      <PortfolioNav
+        activePath={activePath}
+        brand={content.brand}
+        items={content.navItems}
+      />
       {children}
     </main>
   );
@@ -167,7 +149,11 @@ function SectionHeading({
   align?: "center" | "left";
 }) {
   return (
-    <div className={align === "left" ? "max-w-2xl" : "mx-auto max-w-2xl text-center"}>
+    <div
+      className={`animate-panel-in ${
+        align === "left" ? "max-w-2xl" : "mx-auto max-w-2xl text-center"
+      }`}
+    >
       <p className="text-xs font-black uppercase tracking-[0.24em] text-[#49dcff] drop-shadow-[0_0_18px_rgba(73,220,255,0.55)]">
         {eyebrow}
       </p>
@@ -191,7 +177,7 @@ function Hero() {
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-center">
         <div className="animate-rise">
           <div className="inline-flex items-center gap-2 rounded-lg border border-[#35d8ff]/35 bg-[#0b4b80]/45 px-3 py-1.5 text-xs font-bold text-sky-50 shadow-[0_0_32px_rgba(53,216,255,0.2)]">
-            <span className="h-2 w-2 rounded-full bg-[#35d8ff] shadow-[0_0_16px_rgba(53,216,255,0.9)]" />
+            <span className="h-2 w-2 rounded-full bg-[#39ff14] shadow-[0_0_18px_rgba(57,255,20,0.95)]" />
             {content.hero.badge}
           </div>
 
@@ -238,7 +224,8 @@ function Hero() {
           href={featuredProject.href}
           target="_blank"
           rel="noreferrer"
-          className="group relative overflow-hidden rounded-lg border border-[#35d8ff]/30 bg-[#08243f]/85 shadow-[0_0_46px_rgba(0,153,255,0.2)] transition hover:-translate-y-1 hover:border-[#35d8ff]/70"
+          className="animate-panel-in group relative overflow-hidden rounded-lg border border-[#35d8ff]/30 bg-[#08243f]/85 shadow-[0_0_46px_rgba(0,153,255,0.2)] transition hover:-translate-y-1 hover:border-[#35d8ff]/70"
+          style={{ animationDelay: "140ms" }}
         >
           <div className="absolute inset-x-0 top-0 h-1 bg-[#35d8ff] shadow-[0_0_22px_rgba(53,216,255,0.95)]" />
           <div className="relative aspect-[16/11] overflow-hidden">
@@ -269,73 +256,28 @@ function Hero() {
   );
 }
 
-function HomeLinks() {
-  return (
-    <section className="border-t border-sky-200/12 bg-[#0a2b4b]/48 px-5 py-12 sm:px-8">
-      <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
-        {content.navItems.slice(1).map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="rounded-lg border border-sky-200/16 bg-[#061c33]/82 p-4 text-left shadow-[0_12px_48px_rgba(0,87,156,0.15)] transition hover:-translate-y-1 hover:border-[#35d8ff]/70 hover:bg-[#0a3155]"
-          >
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#49dcff]">
-              {item.label}
-            </p>
-            <p className="mt-2 text-sm leading-6 text-sky-50/70">
-              {item.label === "Skills"
-                ? content.sections.skills.description
-                : item.label === "Projects"
-                  ? content.sections.projects.description
-                  : content.sections.works.description}
-            </p>
-          </Link>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 export function PortfolioHome() {
   return (
-    <PageShell>
+    <PageShell activePath="/">
       <Hero />
-      <HomeLinks />
+      <HomeSkillsDropdown />
     </PageShell>
   );
 }
 
-export function PortfolioSkills() {
+function HomeSkillsDropdown() {
   return (
-    <PageShell>
-      <section className="px-5 py-14 sm:px-8 md:py-20">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-          <SectionHeading
-            eyebrow={content.sections.skills.eyebrow}
-            title={content.sections.skills.title}
-            description={content.sections.skills.description}
-            align="left"
-          />
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {content.skills.map((skill, index) => (
-              <div
-                key={skill}
-                className="animate-fade-in rounded-lg border border-sky-200/16 bg-[#061c33]/85 px-3 py-4 text-sm font-black text-sky-50 shadow-[0_0_24px_rgba(0,153,255,0.1)] transition hover:-translate-y-1 hover:border-[#35d8ff]/70 hover:bg-[#0b3b63] hover:shadow-[0_0_28px_rgba(53,216,255,0.18)]"
-                style={{ animationDelay: `${index * 45}ms` }}
-              >
-                {skill}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </PageShell>
+    <SkillsDropdown
+      title={content.sections.skills.title}
+      description={content.sections.skills.description}
+      skills={content.skills}
+    />
   );
 }
 
 export function PortfolioProjects() {
   return (
-    <PageShell>
+    <PageShell activePath="/projects">
       <section className="px-5 py-14 sm:px-8 md:py-20">
         <div className="mx-auto max-w-6xl">
           <SectionHeading
@@ -344,8 +286,12 @@ export function PortfolioProjects() {
             description={content.sections.projects.description}
           />
           <div className="mt-9 grid gap-5 lg:grid-cols-2">
-            {content.projects.map((project) => (
-              <ProjectCard key={project.name} project={project} />
+            {content.projects.map((project, index) => (
+              <ProjectCard
+                key={project.name}
+                project={project}
+                index={index}
+              />
             ))}
           </div>
         </div>
@@ -356,8 +302,10 @@ export function PortfolioProjects() {
 
 function ProjectCard({
   project,
+  index,
 }: {
   project: (typeof content.projects)[number];
+  index: number;
 }) {
   const cardContent = (
     <>
@@ -392,7 +340,8 @@ function ProjectCard({
     </>
   );
   const className =
-    "group overflow-hidden rounded-lg border border-sky-200/16 bg-[#061c33]/90 shadow-[0_18px_62px_rgba(0,87,156,0.18)] transition duration-300 hover:-translate-y-1.5 hover:border-[#35d8ff]/70 hover:shadow-[0_18px_62px_rgba(53,216,255,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#35d8ff]";
+    "animate-panel-in group overflow-hidden rounded-lg border border-sky-200/16 bg-[#061c33]/90 shadow-[0_18px_62px_rgba(0,87,156,0.18)] transition duration-300 hover:-translate-y-1.5 hover:border-[#35d8ff]/70 hover:shadow-[0_18px_62px_rgba(53,216,255,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#35d8ff]";
+  const style = { animationDelay: `${120 + index * 90}ms` };
 
   return project.href ? (
     <a
@@ -400,17 +349,20 @@ function ProjectCard({
       target="_blank"
       rel="noreferrer"
       className={className}
+      style={style}
     >
       {cardContent}
     </a>
   ) : (
-    <article className={className}>{cardContent}</article>
+    <article className={className} style={style}>
+      {cardContent}
+    </article>
   );
 }
 
 export function PortfolioWorks() {
   return (
-    <PageShell>
+    <PageShell activePath="/works">
       <section className="px-5 py-14 sm:px-8 md:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-8 lg:grid-cols-[300px_1fr]">
@@ -470,7 +422,8 @@ function WorkCard({
     </>
   );
   const className =
-    "group flex flex-col gap-4 rounded-lg border border-sky-200/14 bg-[#061c33]/82 p-3 text-left shadow-[0_12px_48px_rgba(0,87,156,0.15)] transition duration-300 hover:-translate-y-1 hover:border-[#35d8ff]/70 hover:bg-[#0a3155] hover:shadow-[0_12px_48px_rgba(53,216,255,0.16)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#35d8ff] sm:flex-row sm:gap-4";
+    "animate-panel-in group flex flex-col gap-4 rounded-lg border border-sky-200/14 bg-[#061c33]/82 p-3 text-left shadow-[0_12px_48px_rgba(0,87,156,0.15)] transition duration-300 hover:-translate-y-1 hover:border-[#35d8ff]/70 hover:bg-[#0a3155] hover:shadow-[0_12px_48px_rgba(53,216,255,0.16)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#35d8ff] sm:flex-row sm:gap-4";
+  const style = { animationDelay: `${120 + index * 80}ms` };
 
   return work.href ? (
     <a
@@ -478,10 +431,13 @@ function WorkCard({
       target="_blank"
       rel="noreferrer"
       className={className}
+      style={style}
     >
       {workContent}
     </a>
   ) : (
-    <article className={className}>{workContent}</article>
+    <article className={className} style={style}>
+      {workContent}
+    </article>
   );
 }
