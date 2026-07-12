@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 type NavItem = {
   label: string;
   href: string;
-  icon: "contact" | "home" | "projects" | "skills" | "works";
+  icon: "contact" | "faq" | "home" | "projects" | "skills" | "works";
 };
 
 type IndicatorStyle = {
@@ -284,6 +284,13 @@ function NavIcon({ icon }: { icon: NavItem["icon"] }) {
           <path d="M18 2 8 12" />
           <path d="m7 13 4 4" />
           <path d="m5 15-2 6 6-2" />
+        </>
+      ) : null}
+      {icon === "faq" ? (
+        <>
+          <path d="M9.1 9a3 3 0 1 1 5.8 1c-.7 1.5-2.9 1.8-2.9 4" />
+          <path d="M12 17h.01" />
+          <circle cx="12" cy="12" r="9" />
         </>
       ) : null}
       {icon === "contact" ? (

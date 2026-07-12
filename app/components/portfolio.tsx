@@ -12,7 +12,7 @@ const content = {
     intro: "Hi, I'm",
     name: "Blue.",
     description:
-      "Over 5 years of scripting experience. I can write any system that will bring your idea to life. As a developer, I've shipped countless systems spanning more than 100 commissions. From simple combat to sophisticated systems, name it and I'll create it.",
+      "I've shipped countless systems across 5 years of proven experience. Fast, clean, optimized and scaleable code written with production in mind. Name your idea and I will bring it to life.",
     profileImage: {
       src: "/no_img.png",
       alt: "Profile picture placeholder",
@@ -33,24 +33,35 @@ const content = {
       eyebrow: "Works",
       title: "Systems, Commissions, Showcases",
       description:
-        "A closer look at the original systems and production work I build.",
+        "A closer look at the original systems and production work I build. Work tagged as outdated have newer versions or clips, but are currently private and restricted by an NDA or others.",
+    },
+    faq: {
+      eyebrow: "FAQ",
+      title: "Frequently Asked Questions",
+      description:
+        "Answers to common questions about commissions, process, and availability.",
     },
   },
   navItems: [
     { label: "Home", href: "/", icon: "home" },
     { label: "Projects", href: "/projects", icon: "projects" },
     { label: "Works", href: "/works", icon: "works" },
+    { label: "FAQ", href: "/faq", icon: "faq" },
     { label: "Contact", href: "/contact", icon: "contact" },
   ],
   skills: [
+    "Lua / Luau",
     "Python",
-    "Luau",
+    "TypeScript",
+    "JavaScript",
+    "HTML / CSS",
+    "Git / Github",
+    "VS Code",
+    "Rojo",
     "Game Design",
+    "Web Design",
     "Management",
     "Optimization",
-    "Tooling",
-    "Github",
-    "VS Code",
   ],
   // Put redirect links in the top-level href field. Leave href empty to keep a project unlinked.
   projects: [
@@ -64,7 +75,7 @@ const content = {
         alt: "AniForce project preview",
       },
       description:
-        "An anime team-based hero shooter heavily inspired by Marvel Rivals. This project is set for a 2026 release.\n\nI am on this project as a programmer working on any system assigned. Main responsibilities include new system implementations, existing system refactors, bug fixes, and optimizations.",
+        "An anime team-based hero shooter heavily inspired by Marvel Rivals. This project is set for a 2026 release.\n\nMy main responsibilities include new system implementations, existing system refactors, bug fixes, and optimizations. I also work closely with management to aid in quality assurance and extensive testing.",
     },
     {
       name: "Grand Alfheim",
@@ -82,7 +93,7 @@ const content = {
     {
       title: "Kaiju Cutscene",
       category: "AniForce",
-      tags: "Frontend, Outdated",
+      tags: "Outdated",
       href: "https://youtu.be/VP21uyGyFvU",
       image: {
         src: "/Thumbnails/KaijuCutscene.png",
@@ -115,6 +126,27 @@ const content = {
       description:
         "Content blocked by NDA, will be available soon.",
     },
+  ],
+  faq: [
+    {
+      question: "What payment methods do you take?",
+      answer:
+        "I can take PayPal or Wise, but I prefer Wise due to the fees. No robux or percentage, unless mixed with USD payment.",
+    },
+    {
+      question: "How long would creating a system take?",
+      answer:
+        "As long as I am provided a full overview of how something should work, I can finish it as soon as possible. Within the day or two.",
+    },
+    {
+      question: "Are you frontend or backend?",
+      answer:
+        "I can work with both, though backend is a stronger suite.",
+    },
+    {
+      question: "How much do you seek to get paid?",
+      answer: "Full-time, minimum $1000 / month. Short-term, minimum $100 per task."
+    }
   ],
   contact: [
     {
@@ -418,6 +450,59 @@ export function PortfolioWorks() {
         </div>
       </section>
     </PageShell>
+  );
+}
+
+export function PortfolioFAQ() {
+  return (
+    <PageShell activePath="/faq">
+      <section className="px-5 py-14 sm:px-8 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <SectionHeading
+            eyebrow={content.sections.faq.eyebrow}
+            title={content.sections.faq.title}
+            description={content.sections.faq.description}
+          />
+          <div className="mt-9 space-y-4">
+            {content.faq.map((item, index) => (
+              <FAQCard key={`${item.question}-${index}`} item={item} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </PageShell>
+  );
+}
+
+function FAQCard({
+  item,
+  index,
+}: {
+  item: (typeof content.faq)[number];
+  index: number;
+}) {
+  return (
+    <article
+      className="animate-panel-in rounded-lg border border-sky-200/14 bg-[#061c33]/82 p-4 text-left shadow-[0_12px_48px_rgba(0,87,156,0.15)] transition duration-300 hover:-translate-y-1 hover:border-[#35d8ff]/70 hover:bg-[#0a3155] hover:shadow-[0_12px_48px_rgba(53,216,255,0.16)] sm:p-5"
+      style={{ animationDelay: `${120 + index * 80}ms` }}
+    >
+      <div className="flex flex-col gap-3 sm:flex-row sm:gap-5">
+        <span className="text-xl font-black leading-none text-[#35d8ff]/70">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#49dcff]">
+            Question
+          </p>
+          <h2 className="mt-2 text-xl font-black leading-tight text-white">
+            {item.question}
+          </h2>
+          <p className="mt-3 whitespace-pre-line text-sm leading-6 text-sky-50/70">
+            {item.answer}
+          </p>
+        </div>
+      </div>
+    </article>
   );
 }
 

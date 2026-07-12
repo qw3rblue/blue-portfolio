@@ -20,6 +20,7 @@ type WorksListProps = {
 };
 
 const ALL_CATEGORIES = "All categories";
+const OUTDATED_TAG_PATTERN = /(\bOutdated\b)/gi;
 
 export function WorksList({ works }: WorksListProps) {
   const [selectedCategory, setSelectedCategory] = useState(ALL_CATEGORIES);
@@ -101,6 +102,18 @@ export function WorksList({ works }: WorksListProps) {
   );
 }
 
+function renderTags(tags: string) {
+  return tags.split(OUTDATED_TAG_PATTERN).map((part, index) =>
+    part.toLowerCase() === "outdated" ? (
+      <span key={`${part}-${index}`} className="text-red-400">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
+
 function WorkCard({ work, index }: { work: WorkItem; index: number }) {
   const workContent = (
     <>
@@ -118,7 +131,7 @@ function WorkCard({ work, index }: { work: WorkItem; index: number }) {
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-black uppercase tracking-[0.16em]">
           <span className="text-[#49dcff]">{work.category}</span>
           <span className="h-1 w-1 rounded-full bg-sky-100/40" />
-          <span className="text-sky-100/55">{work.tags}</span>
+          <span className="text-white">{renderTags(work.tags)}</span>
         </div>
         <h2 className="mt-2 text-xl font-black leading-tight text-white">
           <span className="mr-3 text-[#35d8ff]/70">
